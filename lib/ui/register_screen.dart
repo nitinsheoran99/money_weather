@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:money_weather/model/user_model.dart';
 import 'package:money_weather/provider/auth_provider.dart';
+import 'package:money_weather/util/app_string.dart';
 import 'package:money_weather/util/login_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -39,13 +40,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const Text(
-                            'Register',
+                            register,
                             style: TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(height: 16),
                           const Text(
-                            'Name',
+                            userName,
                             style: TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.bold),
                           ),
@@ -54,14 +55,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                           AppTextField(
                             controller: nameController,
-                            hintText: 'Enter your name',
+                            hintText: nameFieldHint,
 
                           ),
                           const SizedBox(
                             height: 16,
                           ),
                           const Text(
-                            'email',
+                            email,
                             style: TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.bold),
                           ),
@@ -70,13 +71,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                           AppTextField(
                             controller: emailController,
-                            hintText: 'Enter your email',
+                            hintText: emailFieldHint,
                           ),
                           const SizedBox(
                             height: 16,
                           ),
                           const Text(
-                            'Password',
+                            password,
                             style: TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.bold),
                           ),
@@ -86,7 +87,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           AppTextField(
                             controller: passwordController,
                             obscureText: authProvider.isVisible ? false : true,
-                            hintText: 'Enter your Password',
+                            hintText: passwordFieldHint,
                             suffixIcon: IconButton(
                               icon: const Icon(Icons.remove_red_eye),
                               onPressed: () {
@@ -98,7 +99,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             height: 16,
                           ),
                           const Text(
-                            'Enter your Confirm Password',
+                            confirmPassword,
                             style: TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.bold),
                           ),
@@ -108,7 +109,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           AppTextField(
                             controller: confirmPasswordController,
                             obscureText: authProvider.isVisible ? false : true,
-                            hintText: 'Enter your Confirm Password',
+                            hintText: confirmPassword,
                             suffixIcon: IconButton(
                               icon: const Icon(Icons.remove_red_eye),
                               onPressed: () {
@@ -135,7 +136,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   color: Colors.blue,
                                   borderRadius: BorderRadius.circular(24)),
                               child: const Text(
-                                'Register',
+                                register,
                                 style: TextStyle(color: Colors.white),
                               ),
                             ),

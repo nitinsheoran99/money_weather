@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:money_weather/model/user_model.dart';
 import 'package:money_weather/provider/auth_provider.dart';
 import 'package:money_weather/ui/register_screen.dart';
+import 'package:money_weather/util/app_string.dart';
 import 'package:money_weather/util/login_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -37,20 +38,20 @@ class _LoginScreenState extends State<LoginScreen> {
                           children: [
                             const Spacer(),
                             const Text(
-                              'Login',
+                              login,
                               style: TextStyle(
                                   fontSize: 20, fontWeight: FontWeight.bold),
                             ),
                             const SizedBox(height: 8),
                             const Text(
-                              'Login app to continue',
+                              loginText,
                               style: TextStyle(
                                 fontSize: 14,
                               ),
                             ),
                             const SizedBox(height: 16),
                             const Text(
-                              'Email',
+                              email,
                               style: TextStyle(
                                   fontSize: 16, fontWeight: FontWeight.bold),
                             ),
@@ -59,13 +60,13 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             AppTextField(
                               controller: emailController,
-                              hintText: 'Enter your Email',
+                              hintText: emailFieldHint,
                             ),
                             const SizedBox(
                               height: 16,
                             ),
                             const Text(
-                              'Password',
+                              password,
                               style: TextStyle(
                                   fontSize: 16, fontWeight: FontWeight.bold),
                             ),
@@ -76,7 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 controller: passwordController,
                                 obscureText:
                                 authProvider.isVisible ? false : true,
-                                hintText: 'Enter your Password',
+                                hintText: passwordFieldHint,
                                 suffixIcon: IconButton(
                                   icon: const Icon(Icons.remove_red_eye),
                                   onPressed: () {
@@ -99,7 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     color: Colors.blue,
                                     borderRadius: BorderRadius.circular(24)),
                                 child: const Text(
-                                  'Login',
+                                  login,
                                   style: TextStyle(color: Colors.white),
                                 ),
                               ),
@@ -108,7 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                const Text("Don't have account"),
+                                const Text(noAccount),
                                 const SizedBox(
                                   width: 4,
                                 ),
@@ -117,7 +118,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       openRegisterUserScreen();
                                     },
                                     child: const Text(
-                                      'Register',
+                                      register,
                                       style: TextStyle(color: Colors.blue),
                                     )),
                               ],
