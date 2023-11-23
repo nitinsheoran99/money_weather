@@ -1,5 +1,6 @@
 
-import 'package:money_weather/model/user_model.dart';
+
+import 'package:money_weather/login/model/user_model.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 

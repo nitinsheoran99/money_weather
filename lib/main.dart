@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:money_weather/provider/auth_provider.dart';
-import 'package:money_weather/service/database_service.dart';
-import 'package:money_weather/ui/login_screen.dart';
+import 'package:money_weather/login/provider/auth_provider.dart';
+import 'package:money_weather/login/service/database_service.dart';
+import 'package:money_weather/login/ui/login_screen.dart';
+import 'package:money_weather/login/util/app_string.dart';
+
 import 'package:provider/provider.dart';
 
 Future main()async{
@@ -25,7 +27,7 @@ class MyApp extends StatelessWidget {
         })
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: appName,debugShowCheckedModeBanner: false,
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,

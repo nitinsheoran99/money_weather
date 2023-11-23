@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:money_weather/model/user_model.dart';
-import 'package:money_weather/provider/auth_provider.dart';
-import 'package:money_weather/util/app_string.dart';
-import 'package:money_weather/util/login_widget.dart';
+import 'package:money_weather/login/model/user_model.dart';
+import 'package:money_weather/login/provider/auth_provider.dart';
+import 'package:money_weather/login/util/app_string.dart';
+import 'package:money_weather/login/util/login_widget.dart';
+
 import 'package:provider/provider.dart';
 
 class RegisterScreen extends StatefulWidget {

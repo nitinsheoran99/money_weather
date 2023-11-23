@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:money_weather/model/user_model.dart';
-import 'package:money_weather/provider/auth_provider.dart';
-import 'package:money_weather/ui/register_screen.dart';
-import 'package:money_weather/util/app_string.dart';
-import 'package:money_weather/util/login_widget.dart';
+import 'package:money_weather/dashboard/ui/dashboard_screen.dart';
+import 'package:money_weather/login/model/user_model.dart';
+import 'package:money_weather/login/provider/auth_provider.dart';
+import 'package:money_weather/login/ui/register_screen.dart';
+import 'package:money_weather/login/util/app_string.dart';
+import 'package:money_weather/login/util/login_widget.dart';
+
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -157,6 +159,11 @@ class _LoginScreenState extends State<LoginScreen> {
     Provider.of<AuthProvider>(context, listen: false);
     bool isExist = await authProvider.isUserExists(user);
     if (isExist && mounted) {
+      Navigator.push(context, MaterialPageRoute(builder: (context){
+        return  DashBoardScreen(
+          username: emailController.text,
+        );
+      }),);
     }
   }
 }
