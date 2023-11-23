@@ -12,6 +12,7 @@ class AppTextField extends StatelessWidget {
   final VoidCallback? onPressed;
   final Widget? suffixIcon;
 
+
   @override
   Widget build(BuildContext context) {
     return  TextFormField(
@@ -22,7 +23,13 @@ class AppTextField extends StatelessWidget {
           suffixIcon: suffixIcon,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16),
-          )),
+          ),),
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Please enter some text';
+        }
+        return null;
+      },
     );
   }
 }
