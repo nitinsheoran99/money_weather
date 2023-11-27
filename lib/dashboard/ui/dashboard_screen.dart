@@ -1,25 +1,72 @@
 import 'package:flutter/material.dart';
+import 'package:money_weather/dashboard/model/model_record.dart';
+import 'package:money_weather/dashboard/provider/mony_record_provider.dart';
+import 'package:money_weather/dashboard/ui/add_mony_record_screen.dart';
+import 'package:money_weather/login/util/money_recorded_list_item_widget.dart';
 
-class DashBoardScreen extends StatefulWidget {
-  String username;
-   DashBoardScreen({super.key,required this.username});
+import 'package:provider/provider.dart';
+
+class DashboardScreen extends StatefulWidget {
+  const DashboardScreen({super.key});
 
   @override
-  State<DashBoardScreen> createState() => _DashBoardScreenState();
+  State<DashboardScreen> createState() => _DashboardScreenState();
 }
 
-class _DashBoardScreenState extends State<DashBoardScreen> {
+class _DashboardScreenState extends State<DashboardScreen> {
+  @override
+  void initState() {
+    Future.delayed(Duration.zero, () {
+      fetchMoneyRecord();
+    });
+
+    super.initState();
+  }
+
+  Future fetchMoneyRecord() async {
+    final moneyProvider =
+    Provider.of<MoneyRecordProvider>(context, listen: false);
+    moneyProvider.getMoneyRecords();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.username),
-      ),
-      body: Column(
-        children: [
-          
-        ],
+    return SafeArea(
+      child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: openAddMoneyRecordScreen,
+          child: const Icon(Icons.add),
+        ),
+        body: Consumer<MoneyRecordProvider>(
+          builder: (context, moneyRecordProvider, widget) {
+            return Padding(
+              padding: const EdgeInsets.all(16),
+              child: ListView.separated(
+                  itemBuilder: (context, index) {
+                    MoneyRecord moneyRecord =
+                    moneyRecordProvider.moneyRecordList[index];
+
+                    return MoneyRecordListItemWidget(
+                      moneyRecord: moneyRecord,
+                    );
+                  },
+                  separatorBuilder: (context, index) {
+                    return const Divider();
+                  },
+                  itemCount: moneyRecordProvider.moneyRecordList.length),
+
+            );
+          },
+
+        ),
+
       ),
     );
+  }
+
+  void openAddMoneyRecordScreen() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return const AddMoneyRecordScreen();
+    }));
   }
 }

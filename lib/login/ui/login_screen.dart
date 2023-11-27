@@ -160,8 +160,7 @@ class _LoginScreenState extends State<LoginScreen> {
     bool isExist = await authProvider.isUserExists(user);
     if (isExist && mounted) {
       Navigator.push(context, MaterialPageRoute(builder: (context){
-        return  DashBoardScreen(
-          username: emailController.text,
+        return  DashboardScreen(
         );
       }),);
     }

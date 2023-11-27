@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:money_weather/dashboard/provider/mony_record_provider.dart';
+import 'package:money_weather/dashboard/ui/dashboard_screen.dart';
 import 'package:money_weather/login/provider/auth_provider.dart';
 import 'package:money_weather/login/service/database_service.dart';
-import 'package:money_weather/login/ui/login_screen.dart';
+
 import 'package:money_weather/login/util/app_string.dart';
 
 import 'package:provider/provider.dart';
@@ -24,7 +26,12 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context){
           return AuthProvider(databaseService);
-        })
+        }),
+        ChangeNotifierProvider(
+          create: (context) {
+            return MoneyRecordProvider(databaseService);
+          },
+        ),
       ],
       child: MaterialApp(
         title: appName,debugShowCheckedModeBanner: false,
@@ -32,7 +39,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const LoginScreen(),
+        home:  DashboardScreen(),
       ),
     );
   }
