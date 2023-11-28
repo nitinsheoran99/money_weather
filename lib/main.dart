@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:money_weather/dashboard/provider/mony_record_provider.dart';
-import 'package:money_weather/dashboard/ui/dashboard_screen.dart';
+import 'package:money_weather/dashboard/ui/money_record_list_screen.dart';
 import 'package:money_weather/login/provider/auth_provider.dart';
 import 'package:money_weather/login/service/database_service.dart';
 
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home:  DashboardScreen(),
+        home:  MoneyRecordListScreen(),
       ),
     );
   }

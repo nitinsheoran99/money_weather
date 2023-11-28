@@ -9,20 +9,22 @@ class MoneyRecordListItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      decoration: BoxDecoration(
-        color: moneyRecord.type == MoneyRecordType.expense
-            ? Colors.red[100]
-            : Colors.green[100],
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Text(moneyRecord.title),
-          Text(moneyRecord.amount.toString())
-        ],
+    return GestureDetector(
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        decoration: BoxDecoration(
+          color: moneyRecord.type == MoneyRecordType.expense
+              ? Colors.red[100]
+              : Colors.green[100],
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Text(moneyRecord.category),
+            Text(moneyRecord.amount.toString())
+          ],
+        ),
       ),
     );
   }

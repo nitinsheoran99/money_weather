@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:money_weather/dashboard/ui/dashboard_screen.dart';
+import 'package:money_weather/dashboard/ui/money_record_list_screen.dart';
 import 'package:money_weather/login/model/user_model.dart';
 import 'package:money_weather/login/provider/auth_provider.dart';
 import 'package:money_weather/login/ui/register_screen.dart';
@@ -160,7 +160,7 @@ class _LoginScreenState extends State<LoginScreen> {
     bool isExist = await authProvider.isUserExists(user);
     if (isExist && mounted) {
       Navigator.push(context, MaterialPageRoute(builder: (context){
-        return  DashboardScreen(
+        return  MoneyRecordListScreen(
         );
       }),);
     }

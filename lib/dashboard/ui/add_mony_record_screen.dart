@@ -37,7 +37,7 @@ class AddMoneyRecordScreenState extends State<AddMoneyRecordScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(addMonetTitleText),
+        title: const Text(addMoneyTitleText),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -134,7 +134,7 @@ class AddMoneyRecordScreenState extends State<AddMoneyRecordScreen> {
                       color: buttonBackground,
                       borderRadius: BorderRadius.circular(24)),
                   child: const Text(
-                    textButton,
+                    addTextButton,
                     style: TextStyle(color: buttonTextColor),
                   ),
                 ),
@@ -176,7 +176,7 @@ class AddMoneyRecordScreenState extends State<AddMoneyRecordScreen> {
 
     if (moneyProvider.error == null) {
       if (mounted) {
-        AppUtil.showToast(toastTest);
+        AppUtil.showToast(recordAddMsg);
         Navigator.pop(context);
       }
     }
