@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:money_weather/dashboard/model/model_record.dart';
+import 'package:money_watcher/dashboard/model/model_record.dart';
+
 
 
 class MoneyRecordListItemWidget extends StatelessWidget {

@@ -1,6 +1,7 @@
 
-import 'package:money_weather/dashboard/model/model_record.dart';
-import 'package:money_weather/login/model/user_model.dart';
+
+import 'package:money_watcher/dashboard/model/model_record.dart';
+import 'package:money_watcher/login/model/user_model.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 

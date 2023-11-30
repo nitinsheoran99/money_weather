@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:money_weather/login/model/user_model.dart';
-import 'package:money_weather/login/service/database_service.dart';
+import 'package:money_watcher/login/model/user_model.dart';
+import 'package:money_watcher/login/service/database_service.dart';
+
 
 
 class AuthProvider extends ChangeNotifier {

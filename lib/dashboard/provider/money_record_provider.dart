@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:money_weather/dashboard/model/model_record.dart';
-import 'package:money_weather/login/service/database_service.dart';
-import 'package:money_weather/login/util/app_util.dart';
+import 'package:money_watcher/dashboard/model/model_record.dart';
+import 'package:money_watcher/login/service/database_service.dart';
+import 'package:money_watcher/login/util/app_util.dart';
+
 
 
 class MoneyRecordProvider extends ChangeNotifier {

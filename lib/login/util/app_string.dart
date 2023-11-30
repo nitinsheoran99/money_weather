@@ -22,3 +22,6 @@ const String addTextButton = "Add Record";
 const String recordAddMsg = "Record added successfully!";
 const String editTextButton = "Edit Record";
 const String recordEditMsg = "Record updated successfully!";
+const String filterType = "Filter Type";
+const String income = "Income";
+const String filter = "Filter";

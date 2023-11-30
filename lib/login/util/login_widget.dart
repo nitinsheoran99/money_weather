@@ -24,6 +24,7 @@ class AppTextField extends StatelessWidget {
       controller: controller,
       obscureText: obscureText,
       keyboardType: keyboardType,
+      textCapitalization: TextCapitalization.words,
       decoration: InputDecoration(
           hintText: hintText,
           suffixIcon: suffixIcon,

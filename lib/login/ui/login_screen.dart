@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:money_weather/dashboard/ui/money_record_list_screen.dart';
-import 'package:money_weather/login/model/user_model.dart';
-import 'package:money_weather/login/provider/auth_provider.dart';
-import 'package:money_weather/login/ui/register_screen.dart';
-import 'package:money_weather/login/util/app_string.dart';
-import 'package:money_weather/login/util/login_widget.dart';
+import 'package:money_watcher/dashboard/ui/money_record_list_screen.dart';
+import 'package:money_watcher/login/model/user_model.dart';
+import 'package:money_watcher/login/provider/auth_provider.dart';
+import 'package:money_watcher/login/ui/register_screen.dart';
+import 'package:money_watcher/login/util/app_string.dart';
+import 'package:money_watcher/login/util/login_widget.dart';
+
 
 import 'package:provider/provider.dart';
 
