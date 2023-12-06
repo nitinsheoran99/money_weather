@@ -23,17 +23,17 @@ class _MoneyRecordFilterScreenState extends State<MoneyRecordFilterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(filter),
+        title: const Text(filter),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
    children: [
-     Text(filterType,style: TextStyle(fontSize: 20),),
+     const Text(filterType,style: TextStyle(fontSize: 20),),
      Row(
        mainAxisAlignment: MainAxisAlignment.spaceBetween,
        children: [
-         ChoiceChip(label: Text(income), selected: moneyRecordType == MoneyRecordType.income,
+         ChoiceChip(label: const Text(income), selected: moneyRecordType == MoneyRecordType.income,
          onSelected: (bool selected){
            if(selected){
              setState(() {
@@ -43,7 +43,7 @@ class _MoneyRecordFilterScreenState extends State<MoneyRecordFilterScreen> {
            }
          },
          ),
-         ChoiceChip(label: Text(radioTextExpense), selected: moneyRecordType == MoneyRecordType.expense,
+         ChoiceChip(label: const Text(radioTextExpense), selected: moneyRecordType == MoneyRecordType.expense,
            onSelected: (bool selected){
              if(selected){
                setState(() {

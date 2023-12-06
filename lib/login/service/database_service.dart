@@ -1,5 +1,6 @@
 
 
+import 'package:flutter/foundation.dart';
 import 'package:money_watcher/dashboard/model/model_record.dart';
 import 'package:money_watcher/login/model/user_model.dart';
 import 'package:path/path.dart';
@@ -20,7 +21,9 @@ class DatabaseService {
       onCreate: (db, version) async {
         createUserTable(db);
         createMoneyRecordTable(db);
-        print('Table create successfully');
+        if (kDebugMode) {
+          print('Table create successfully');
+        }
       },
     );
   }
@@ -42,7 +45,9 @@ class DatabaseService {
     //     "insert into $userTableName values('${user.email}','${user.name}','${user.password}')");
     await database.rawInsert('insert into $userTableName values(?,?,?)',
         [user.email, user.name, user.password]);
-    print('User added successfully');
+    if (kDebugMode) {
+      print('User added successfully');
+    }
   }
 
   Future<bool> isUserExists(User user) async {
@@ -69,7 +74,9 @@ class DatabaseService {
           moneyRecord.date,
           moneyRecord.type.toString(),
         ]);
-    print('Money Record added successfully');
+    if (kDebugMode) {
+      print('Money Record added successfully');
+    }
   }
 
   Future<void> editMoneyRecord(MoneyRecord record) async {
@@ -88,7 +95,9 @@ class DatabaseService {
         record.id,
       ],
     );
-    print('Money Record updated successfully');
+    if (kDebugMode) {
+      print('Money Record updated successfully');
+    }
   }
 
   Future deleteMoneyRecord(int id) async {
@@ -96,7 +105,9 @@ class DatabaseService {
       'delete from $moneyRecordTableName where id=?',
       [id],
     );
-    print('Money Record deleted successfully');
+    if (kDebugMode) {
+      print('Money Record deleted successfully');
+    }
   }
 
   Future<List<MoneyRecord>> getMoneyRecords() async {

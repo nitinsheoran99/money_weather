@@ -161,7 +161,7 @@ class _LoginScreenState extends State<LoginScreen> {
     bool isExist = await authProvider.isUserExists(user);
     if (isExist && mounted) {
       Navigator.push(context, MaterialPageRoute(builder: (context){
-        return  MoneyRecordListScreen(
+        return  const MoneyRecordListScreen(
         );
       }),);
     }
