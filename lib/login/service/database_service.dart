@@ -40,7 +40,7 @@ class DatabaseService {
         'password text)');
   }
 
-  Future registerUser(User user) async {
+  Future registerUser(UserModel user) async {
     // await database.rawInsert(
     //     "insert into $userTableName values('${user.email}','${user.name}','${user.password}')");
     await database.rawInsert('insert into $userTableName values(?,?,?)',
@@ -50,7 +50,7 @@ class DatabaseService {
     }
   }
 
-  Future<bool> isUserExists(User user) async {
+  Future<bool> isUserExists(UserModel user) async {
     List list = await database
         .rawQuery('select * from $userTableName where email=? AND password=?', [
       user.email,

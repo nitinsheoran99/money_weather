@@ -142,8 +142,10 @@ class _MoneyRecordListScreenState extends State<MoneyRecordListScreen> {
             ),
             TextButton(
               onPressed: () {
-                deleteMoneyRecord(moneyRecord.id!);
-                Navigator.of(context).pop();
+                if(moneyRecord.id!=null) {
+                  deleteMoneyRecord(moneyRecord.id!);
+                  Navigator.of(context).pop();
+                }
               },
               child: const Text("Okay"),
             )
@@ -165,7 +167,7 @@ class _MoneyRecordListScreenState extends State<MoneyRecordListScreen> {
     }));
   }
 
-  Future deleteMoneyRecord(int id) async {
+  Future deleteMoneyRecord(String id) async {
     MoneyRecordProvider moneyRecordProvider =
     Provider.of<MoneyRecordProvider>(context, listen: false);
     await moneyRecordProvider.deleteMoneyRecord(id);

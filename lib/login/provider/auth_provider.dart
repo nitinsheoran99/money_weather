@@ -1,14 +1,12 @@
 import 'package:flutter/cupertino.dart';
+import 'package:money_watcher/firebase_auth/auth_service.dart';
 import 'package:money_watcher/login/model/user_model.dart';
-import 'package:money_watcher/login/service/database_service.dart';
+import 'package:money_watcher/login/util/app_util.dart';
 
 
-
-class AuthProvider extends ChangeNotifier {
-  DatabaseService databaseService;
-
-  AuthProvider(this.databaseService);
-
+class AuthProvider extends ChangeNotifier{
+  AuthService authService;
+  AuthProvider(this.authService);
   bool isVisible = false;
   bool isLoading = false;
   String? error;
@@ -18,31 +16,42 @@ class AuthProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future registerUser(User user) async {
+  Future registerUser(UserModel user) async {
     isLoading = true;
     error = null;
     notifyListeners();
+    await Future.delayed(const Duration(seconds: 3));
     try {
-      await databaseService.registerUser(user);
+      await authService.signUp(user);
     } catch (e) {
       error = e.toString();
+      AppUtil.showToast(error!);
     }
     isLoading = false;
     notifyListeners();
   }
 
-  Future<bool> isUserExists(User user) async {
+
+  Future<bool> isUserExists(UserModel user) async {
     try {
       isLoading = true;
       error = null;
       notifyListeners();
-      return await databaseService.isUserExists(user);
+      bool result = await authService.login(user);
+      if(result){
+        return true;
+      }else{
+        return false;
+      }
+      // return await authService.login(user);
     } catch (e) {
       error = e.toString();
+      AppUtil.showToast(error!);
     } finally {
       isLoading = false;
       notifyListeners();
     }
     return false;
   }
+
 }

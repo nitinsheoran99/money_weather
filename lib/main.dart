@@ -1,15 +1,18 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:money_watcher/dashboard/provider/money_record_provider.dart';
-import 'package:money_watcher/dashboard/ui/money_record_list_screen.dart';
+import 'package:money_watcher/dashboard/service/firebase_service.dart';
+import 'package:money_watcher/firebase_auth/auth_service.dart';
+import 'package:money_watcher/firebase_options.dart';
 import 'package:money_watcher/login/provider/auth_provider.dart';
 import 'package:money_watcher/login/service/database_service.dart';
+import 'package:money_watcher/login/ui/login_screen.dart';
 import 'package:money_watcher/login/util/app_string.dart';
-
-
 import 'package:provider/provider.dart';
 
 Future main()async{
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   DatabaseService databaseService = DatabaseService();
   await databaseService.initDatabase();
   runApp(MyApp(databaseService:databaseService));
@@ -25,11 +28,11 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context){
-          return AuthProvider(databaseService);
+          return AuthProvider(AuthService());
         }),
         ChangeNotifierProvider(
           create: (context) {
-            return MoneyRecordProvider(databaseService);
+            return MoneyRecordProvider(MoneyWatcherFirebaseService());
           },
         ),
       ],
@@ -39,7 +42,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home:  MoneyRecordListScreen(),
+        home:  LoginScreen(),
       ),
     );
   }
