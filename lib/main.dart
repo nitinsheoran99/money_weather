@@ -4,6 +4,7 @@ import 'package:money_watcher/dashboard/provider/money_record_provider.dart';
 import 'package:money_watcher/dashboard/service/firebase_service.dart';
 import 'package:money_watcher/firebase_auth/auth_service.dart';
 import 'package:money_watcher/firebase_options.dart';
+import 'package:money_watcher/image_picker_screen.dart';
 import 'package:money_watcher/login/provider/auth_provider.dart';
 import 'package:money_watcher/login/service/database_service.dart';
 import 'package:money_watcher/login/ui/login_screen.dart';
@@ -15,6 +16,8 @@ Future main()async{
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   DatabaseService databaseService = DatabaseService();
   await databaseService.initDatabase();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp(databaseService:databaseService));
 }
 

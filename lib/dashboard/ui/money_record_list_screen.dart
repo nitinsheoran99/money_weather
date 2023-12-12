@@ -123,7 +123,7 @@ class _MoneyRecordListScreenState extends State<MoneyRecordListScreen> {
   Future fetchMoneyRecord() async {
     final moneyProvider =
     Provider.of<MoneyRecordProvider>(context, listen: false);
-    moneyProvider.getMoneyRecords();
+    moneyProvider.listenMoneyRecordChanges();
   }
 
   void showDeleteConfirmDialog(MoneyRecord moneyRecord) {

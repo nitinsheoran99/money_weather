@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:money_watcher/dashboard/model/model_record.dart';
 
 import 'package:money_watcher/dashboard/provider/money_record_provider.dart';
@@ -8,7 +11,6 @@ import 'package:money_watcher/login/util/app_string.dart';
 import 'package:money_watcher/login/util/app_util.dart';
 import 'package:money_watcher/login/util/login_widget.dart';
 import 'package:money_watcher/login/util/radio_button_widget.dart';
-
 
 import 'package:provider/provider.dart';
 
@@ -26,8 +28,9 @@ class AddMoneyRecordScreenState extends State<AddMoneyRecordScreen> {
 
   int selectedDate = DateTime.now().millisecondsSinceEpoch;
   MoneyRecordType selectedType = MoneyRecordType.expense;
-
   List<String> categories = AppConstant.getRecordCategories();
+  String imagePath = '';
+  late XFile? imageFile;
 
   @override
   void initState() {
@@ -57,7 +60,7 @@ class AddMoneyRecordScreenState extends State<AddMoneyRecordScreen> {
               AppTextField(
                 controller: amountController,
                 keyboardType:
-                const TextInputType.numberWithOptions(decimal: true),
+                    const TextInputType.numberWithOptions(decimal: true),
                 hintText: hintTextAmount,
               ),
               const SizedBox(height: 16),
@@ -75,7 +78,7 @@ class AddMoneyRecordScreenState extends State<AddMoneyRecordScreen> {
                     });
                   },
                   items:
-                  categories.map<DropdownMenuItem<String>>((String value) {
+                      categories.map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Text(value),
@@ -85,7 +88,40 @@ class AddMoneyRecordScreenState extends State<AddMoneyRecordScreen> {
                       labelText: labelTextCategory, border: InputBorder.none),
                 ),
               ),
-              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  IconButton(
+                    onPressed: () async {
+                      XFile? image = await ImagePicker()
+                          .pickImage(source: ImageSource.gallery);
+                      if (image != null) {
+                        setState(() {
+                          imagePath = image.path;
+                        });
+                        print("Image path from gallery: ${image.path}");
+                      }
+                    },
+                    icon: const Icon(Icons.image),
+                  ),
+                  const SizedBox(height: 12),
+                  IconButton(
+                    onPressed: () async {
+                      XFile? image = await ImagePicker()
+                          .pickImage(source: ImageSource.camera);
+                      if (image != null) {
+                        setState(() {
+                          imagePath = image.path;
+                        });
+                        print("Image path from camera: ${image.path}");
+                      }
+                    },
+                    icon: const Icon(Icons.camera_alt),
+                  ),
+                ],
+              ),
+              // buildImageList(),
+              const SizedBox(height: 80),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -124,9 +160,10 @@ class AddMoneyRecordScreenState extends State<AddMoneyRecordScreen> {
               ),
               const SizedBox(height: 16),
               InkWell(
-                onTap: () async{
+                onTap: () async {
                   await addMoneyRecord();
                   fetchMoneyRecord();
+
                 },
                 child: Container(
                   width: double.infinity,
@@ -140,13 +177,34 @@ class AddMoneyRecordScreenState extends State<AddMoneyRecordScreen> {
                     style: TextStyle(color: buttonTextColor),
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),
       ),
     );
   }
+
+  // Widget buildImageList() {
+  //   return Container(
+  //     height: 80,
+  //     child: ListView.builder(
+  //       scrollDirection: Axis.horizontal,
+  //       itemCount: imagePath.length,
+  //       itemBuilder: (context, index) {
+  //         return Padding(
+  //           padding: const EdgeInsets.symmetric(horizontal: 8.0),
+  //           child: Image.file(
+  //             File(imagePath[index]),
+  //             width: 80,
+  //             height: 80,
+  //             fit: BoxFit.cover,
+  //           ),
+  //         );
+  //       },
+  //     ),
+  //   );
+  // }
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -170,10 +228,11 @@ class AddMoneyRecordScreenState extends State<AddMoneyRecordScreen> {
       category: selectedCategory,
       date: selectedDate,
       type: selectedType,
+      path: imagePath.toString(),
     );
 
     final moneyProvider =
-    Provider.of<MoneyRecordProvider>(context, listen: false);
+        Provider.of<MoneyRecordProvider>(context, listen: false);
     await moneyProvider.addMoneyRecord(moneyRecord);
 
     if (moneyProvider.error == null) {
@@ -184,9 +243,9 @@ class AddMoneyRecordScreenState extends State<AddMoneyRecordScreen> {
     }
   }
 
-  Future fetchMoneyRecord()async{
+  Future fetchMoneyRecord() async {
     final moneyProvider =
-    Provider.of<MoneyRecordProvider>(context, listen: false);
+        Provider.of<MoneyRecordProvider>(context, listen: false);
     moneyProvider.getMoneyRecords();
   }
 }
